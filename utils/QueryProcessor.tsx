@@ -33,5 +33,18 @@ export default function QueryProcessor(query: string): string {
     return largest.toString();
   }
 
+  const squareAndCubeMatch = lowerCaseQuery.match(/which of the following numbers is both a square and a cube: ([\d, ]+)\?/);
+  if (squareAndCubeMatch) {
+    const numbers = squareAndCubeMatch[1]
+      .split(",")
+      .map((num) => parseInt(num.trim(), 10));
+    const results = numbers.filter((num) => {
+      const sqrt = Math.sqrt(num);
+      const cbrt = Math.cbrt(num);
+      return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+    });
+    return results.join(", ");
+  }
+
   return "";
 }
