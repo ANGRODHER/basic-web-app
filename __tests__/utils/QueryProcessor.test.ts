@@ -29,5 +29,10 @@ describe("QueryProcessor", () => {
     const response: string = QueryProcessor(query);
     expect(response).toBe("ANGRODHER2");
   });
+  test("should calculate a math expression", () => {
+    const query = "What is 23 plus 35?";
+    const response: string = QueryProcessor(query);
+    expect(response).toBe("58");
+  });
 });
 
