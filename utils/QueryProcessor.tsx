@@ -20,6 +20,12 @@ export default function QueryProcessor(query: string): string {
     // TODO: actualiza el caso de prueba correspondiente en __tests__
     return "ANGRODHER2";
   }
+  const mathMatch = lowerCaseQuery.match(/what is (\d+) plus (\d+)\?/);
+  if (mathMatch) {
+    const num1 = parseInt(mathMatch[1], 10);
+    const num2 = parseInt(mathMatch[2], 10);
+    return (num1 + num2).toString();
+  }
 
   // Si no coincide con ningún caso
   return "";
