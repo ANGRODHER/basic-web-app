@@ -17,32 +17,25 @@ export default function QueryProcessor(query: string): string {
     return "ANGRODHER2";
   }
 
-  const mathMatch = lowerCaseQuery.match(/what is (\d+) plus (\d+)\?/);
-  if (mathMatch) {
-    const num1 = parseInt(mathMatch[1], 10);
-    const num2 = parseInt(mathMatch[2], 10);
+  const mathQueryMatch = lowerCaseQuery.match(/what is (\d+) plus (\d+)\?/);
+  if (mathQueryMatch) {
+    const num1 = parseInt(mathQueryMatch[1], 10);
+    const num2 = parseInt(mathQueryMatch[2], 10);
     return (num1 + num2).toString();
   }
 
- const mathMatch = lowerCaseQuery.match(/what is (\d+) plus (\d+)\?/);
-  if (mathMatch) {
-    const num1 = parseInt(mathMatch[1], 10);
-    const num2 = parseInt(mathMatch[2], 10);
-    return (num1 + num2).toString();
-  }
-
-  const largestMatch = lowerCaseQuery.match(/which of the following numbers is the largest: ([\d, ]+)\?/);
-  if (largestMatch) {
-    const numbers = largestMatch[1]
+  const largestQueryMatch = lowerCaseQuery.match(/which of the following numbers is the largest: ([\d, ]+)\?/);
+  if (largestQueryMatch) {
+    const numbers = largestQueryMatch[1]
       .split(",")
       .map((num) => parseInt(num.trim(), 10));
     const largest = Math.max(...numbers);
     return largest.toString();
   }
 
-  const squareAndCubeMatch2 = lowerCaseQuery.match(/which of the following numbers is both a square and a cube:\s*([\d,\s]+)\?/i);
-  if (squareAndCubeMatch2) {
-    const numbers = squareAndCubeMatch2[1]
+  const squareAndCubeQueryMatch = lowerCaseQuery.match(/which of the following numbers is both a square and a cube:\s*([\d,\s]+)\?/i);
+  if (squareAndCubeQueryMatch) {
+    const numbers = squareAndCubeQueryMatch[1]
       .split(",")
       .map((num) => parseInt(num.trim(), 10));
     const results = numbers.filter((num) => {
