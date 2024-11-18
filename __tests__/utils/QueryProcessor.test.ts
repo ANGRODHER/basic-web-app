@@ -26,4 +26,12 @@ describe("QueryProcessor", () => {
 		"YOUR USB ID SHOULD BE HERE"
     	));
     });
+	// TODO: Deberías actualizar la prueba a continuación después de añadir tu USB ID
+    test('should return my name', () => {
+        const query = "what is you name?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+		"ANGRODHER2"
+    	));
+    });
 });
