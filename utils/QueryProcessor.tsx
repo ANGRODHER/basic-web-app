@@ -45,16 +45,18 @@ export default function QueryProcessor(query: string): string {
     });
     return results.join(", ");
   }
-  const squareAndCubeMatch = lowerCaseQuery.match(/which of the following numbers is both a square and a cube: ([\d, ]+)\?/);
+  const squareAndCubeMatch = lowerCaseQuery.match(/which of the following numbers is both a square and a cube:\s*([\d,\s]+)\?/i);
   if (squareAndCubeMatch) {
     const numbers = squareAndCubeMatch[1]
       .split(",")
       .map((num) => parseInt(num.trim(), 10));
     const results = numbers.filter((num) => {
-      const sqrt = Math.sqrt(num);
-      const cbrt = Math.cbrt(num);
-      return Number.isInteger(sqrt) && Number.isInteger(cbrt);
-    });
+    if (isNaN(num)) return false; // Asegurarnos de ignorar valores inválidos
+    const sqrt = Math.sqrt(num);
+    const cbrt = Math.cbrt(num);
+    return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+  });
+
     return results.join(", ");
   }
 
