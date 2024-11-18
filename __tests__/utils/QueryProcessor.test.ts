@@ -44,6 +44,11 @@ describe("QueryProcessor", () => {
   const response: string = QueryProcessor(query);
   expect(response).toBe("64, 512");
 });
+  test("should find numbers that are both squares and cubes for another set of numbers", () => {
+  const query = "Which of the following numbers is both a square and a cube: 4426, 4728, 3068, 1000, 3136, 729, 1203?";
+  const response: string = QueryProcessor(query);
+  expect(response).toBe("729, 1000");
+});
 
 });
 
