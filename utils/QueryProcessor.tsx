@@ -10,16 +10,13 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (lowerCaseQuery.includes("usb id")) {
-    // TODO: añade tu USB ID a continuación
-    // TODO: actualiza el caso de prueba correspondiente en __tests__
     return "15-11669";
   }
 
   if (lowerCaseQuery.includes("name")) {
-    // TODO: añade tu nombre a continuación
-    // TODO: actualiza el caso de prueba correspondiente en __tests__
     return "ANGRODHER2";
   }
+
   const mathMatch = lowerCaseQuery.match(/what is (\d+) plus (\d+)\?/);
   if (mathMatch) {
     const num1 = parseInt(mathMatch[1], 10);
@@ -27,6 +24,14 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
-  // Si no coincide con ningún caso
+  const largestMatch = lowerCaseQuery.match(/which of the following numbers is the largest: ([\d, ]+)\?/);
+  if (largestMatch) {
+    const numbers = largestMatch[1]
+      .split(",")
+      .map((num) => parseInt(num.trim(), 10));
+    const largest = Math.max(...numbers);
+    return largest.toString();
+  }
+
   return "";
 }
